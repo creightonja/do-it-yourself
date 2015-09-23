@@ -3,11 +3,19 @@
   <ul>
     <li ng-repeat="item in user.questions">
       {{ item.name }}
+      <div ng-show="item.answer == null"><span ng-click="editing = true" ng-hide="editing">Add an answer</span></div>
+      <span class="form-group" ng-show="editing" ng-submit="editing = false">
+        <form class="form-inline" role="form">
+          <input type="text" class="form-control input-sm" ng-model="item.answer" placeholder="Answer" required/>
+          <button class="btn btn-default btn-sm" type="submit">Save</button>
+        </form>
+      </span>
+      <div ng-show="item.answer != null">{{ item.answer }}</div>
     </li>
   </ul>
 </div>
 
-<div>
+<div ng-show="user">
   <h2>Add a question to {{ user.name }}</h2>
   <form ng-submit="addQuestion()" class="form-inline" role="form">
     <div class="form-group">
