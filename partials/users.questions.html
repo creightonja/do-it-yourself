@@ -1,16 +1,29 @@
 <div ng-show="user.questions.length">
+
+
   <h2>Question List for {{ user.name }}</h2>
-  <ul>
-    <li ng-repeat="item in user.questions">
-      {{ item.name }}
-      <div ng-show="item.answer == null"><span ng-click="editing = true" ng-hide="editing">Add an answer</span></div>
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="item in user.questions">
+      <h4 ng-show="item.answer == null">Unanswered Questions</h4>
+      <div ng-show="item.answer == null">{{ item.name }}<span ng-click="editing = true" ng-hide="editing">Add an answer</span></div>
       <span class="form-group" ng-show="editing" ng-submit="editing = false">
         <form class="form-inline" role="form">
           <input type="text" class="form-control input-sm" ng-model="item.answer" placeholder="Answer" required/>
           <button class="btn btn-default btn-sm" type="submit">Save</button>
         </form>
       </span>
-      <div ng-show="item.answer != null">{{ item.answer }}</div>
+    </li>
+  </ul>
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="item in user.questions">
+      <h4 ng-show="item.answer != null">Answered Questions</h4>
+      <div ng-show="item.answer != null">{{ item.name }}<span ng-click="editing = true" ng-hide="editing">{{ item.answer }}</span></div>
+      <span class="form-group" ng-show="editing" ng-submit="editing = false">
+        <form class="form-inline" role="form">
+          <input type="text" class="form-control input-sm" ng-model="item.answer" placeholder="Answer" required/>
+          <button class="btn btn-default btn-sm" type="submit">Save</button>
+        </form>
+      </span>
     </li>
   </ul>
 </div>
