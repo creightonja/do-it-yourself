@@ -5,7 +5,9 @@
   <ul class="list-group">
     <li class="list-group-item" ng-repeat="item in user.questions">
       <h4 ng-show="item.answer == null">Unanswered Questions</h4>
-      <div ng-show="item.answer == null">{{ item.name }}<span ng-click="editing = true" ng-hide="editing">Add an answer</span></div>
+      <div ng-show="item.answer == null">{{ item.name }}
+        <span ng-click="editing = true" ng-hide="editing">Add an answer</span>
+      </div>
       <span class="form-group" ng-show="editing" ng-submit="editing = false">
         <form class="form-inline" role="form">
           <input type="text" class="form-control input-sm" ng-model="item.answer" placeholder="Answer" required/>
@@ -17,7 +19,10 @@
   <ul class="list-group">
     <li class="list-group-item" ng-repeat="item in user.questions">
       <h4 ng-show="item.answer != null">Answered Questions</h4>
-      <div ng-show="item.answer != null">{{ item.name }}<span ng-click="editing = true" ng-hide="editing">{{ item.answer }}</span></div>
+      <div ng-show="item.answer != null">{{ item.name }}
+        <span ng-click="editing = true" ng-hide="editing">{{ item.answer }}</span>
+        <span>{{ item.vote }} <a ng-click="upVote(item)">Vote Up</a> <a ng-click="downVote(item)">Vote Down</a></span>
+      </div>
       <span class="form-group" ng-show="editing" ng-submit="editing = false">
         <form class="form-inline" role="form">
           <input type="text" class="form-control input-sm" ng-model="item.answer" placeholder="Answer" required/>
