@@ -1,4 +1,4 @@
-var questionList = angular.module('QuestionList', ['ui.router']);
+var questionList = angular.module('questionList', ['ui.router']);
 
 questionList.config(function($stateProvider, $urlRouterProvider) {
   $stateProvider.state('home', {
@@ -13,7 +13,7 @@ questionList.config(function($stateProvider, $urlRouterProvider) {
   });
 
   $stateProvider.state('users.questions', {
-    url: "/:questionId",
+    url: "/:userId",
     templateUrl: "partials/users.questions.html",
     controller: 'QuestionsCtrl'
   });
