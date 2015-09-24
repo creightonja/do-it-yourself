@@ -2,44 +2,48 @@
 
 
   <h2>Question List for {{ user.name }}</h2>
-  <ul class="list-group the-ul">
-    <h4 class="h44" ng-show="item.answer == null">Unanswered Questions</h4>
-    <li class="list-group-item the-li" ng-repeat="item in user.questions">
-      <div ng-show="item.answer == null">{{ item.name }}
-        <a class="clicker" ng-click="editing = true" ng-hide="editing">Add an answer</a>
-      </div>
-      <span class="form-group" ng-show="editing" ng-submit="editing = false">
-        <form class="form-inline" role="form">
-          <input type="text" class="form-control input-sm" ng-model="item.answer" placeholder="Answer" required/>
-          <button class="btn btn-default btn-sm" type="submit">Save</button>
-        </form>
-      </span>
-    </li>
-  </ul>
-  <ul class="list-group the-ul">
-    <h4 class="h44" ng-show="item.answer != null">Answered Questions</h4>
-    <li class="list-group-item the-li" ng-repeat="item in user.questions">
-      <div ng-show="item.answer != null">{{ item.name }}<br>
-        <span>
-          {{ item.vote }} <a ng-click="upVote(item)"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>
-          <a ng-click="downVote(item)"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>
+  <div ng-show="item.answer == null">
+    <ul class="list-group the-ul">
+      <h4 class="h44">Unanswered Questions</h4>
+      <li class="list-group-item the-li" ng-repeat="item in user.questions">
+        <div ng-show="item.answer == null">{{ item.name }}
+          <a class="clicker" ng-click="editing = true" ng-hide="editing">Add an answer</a>
+        </div>
+        <span class="form-group" ng-show="editing" ng-submit="editing = false">
+          <form class="form-inline" role="form">
+            <input type="text" class="form-control input-sm" ng-model="item.answer" placeholder="Answer" required/>
+            <button class="btn btn-default btn-sm" type="submit">Save</button>
+          </form>
         </span>
-        <span ng-click="editing = true" ng-hide="editing">{{ item.answer }}</span><br>
-        <span ng-show="item.approval">Approved
-          <a ng-click="disapprove(item)">disapprove</a>
+      </li>
+    </ul>
+  </div>
+  <div ng-show="item.answer != null">
+    <ul class="list-group the-ul">
+      <h4 class="h44">Answered Questions</h4>
+      <li class="list-group-item the-li" ng-repeat="item in user.questions">
+        <div ng-show="item.answer != null">{{ item.name }}<br>
+          <span>
+            {{ item.vote }} <a ng-click="upVote(item)"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>
+            <a ng-click="downVote(item)"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>
+          </span>
+          <span ng-click="editing = true" ng-hide="editing">{{ item.answer }}</span><br>
+          <span ng-show="item.approval"><span class="glyphicon glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+            <a ng-click="disapprove(item)">Disapprove</a>
+          </span>
+          <span ng-show="!item.approval">
+            <a ng-click="approve(item)">Approve</a>
+          </span>
+        </div>
+        <span class="form-group" ng-show="editing" ng-submit="editing = false">
+          <form class="form-inline" role="form">
+            <input type="text" class="form-control input-sm" ng-model="item.answer" placeholder="Answer" required/>
+            <button class="btn btn-default btn-sm" type="submit">Save</button>
+          </form>
         </span>
-        <span ng-show="!item.approval">
-          <a ng-click="approve(item)">Approve Answer</a>
-        </span>
-      </div>
-      <span class="form-group" ng-show="editing" ng-submit="editing = false">
-        <form class="form-inline" role="form">
-          <input type="text" class="form-control input-sm" ng-model="item.answer" placeholder="Answer" required/>
-          <button class="btn btn-default btn-sm" type="submit">Save</button>
-        </form>
-      </span>
-    </li>
-  </ul>
+      </li>
+    </ul>
+  </div>
 </div>
 
 <div ng-show="user">
