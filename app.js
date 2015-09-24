@@ -12,9 +12,15 @@ questionList.config(function($stateProvider, $urlRouterProvider) {
     controller: 'UsersCtrl'
   });
 
-  $stateProvider.state('users.questions', {
-    url: "/:userId",
-    templateUrl: "partials/users.questions.html",
-    controller: 'QuestionsCtrl'
-  });
+  $stateProvider
+    .state('users.questions', {
+      url: "/:userId",
+      templateUrl: "partials/users.questions.html",
+      controller: 'QuestionsCtrl'
+    })
+    .state('users.questions.comments', {
+      url: "/:questionId",
+      templateUrl: "partials/users.questions.comments.html",
+      controller: 'CommentsCtrl'
+    });
 });

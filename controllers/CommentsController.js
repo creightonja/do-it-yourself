@@ -1,7 +1,8 @@
 questionList.controller('CommentsCtrl', function CommentsCtrl($scope, $stateParams, UsersFactory, UtilitiesFactory, QuestionsCtrl){
   $scope.user = UtilitiesFactory.findById(UsersFactory.users, $stateParams.userId);
   $scope.addComment = function() {
-    $scope.user.question.
+    $scope.user.question.comments.push({ comment: $scope.comment });
+    $scope.comment = null;
   }
 }
 });

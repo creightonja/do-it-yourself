@@ -1,12 +1,3 @@
-<div ng-show="users.length">
-  <h1>Here are all of your users:</h1>
-  <ul class="list-group the-ul">
-    <li class="list-group-item the-li" ng-repeat="item in users">
-      <a ui-sref="users.questions({ userId: item.id })">{{ item.name }} {{ item.id }}</a>
-    </li>
-  </ul>
-</div>
-
 <div class="col-md-4">
   <h3>Add a new user</h3>
   <form ng-submit="UsersFactory.addUser()" class="form-inline" role="form">
@@ -15,6 +6,15 @@
     </div>
     <button type="submit" class="btn btn-default">Submit</button>
   </form>
+</div>
+
+<div ng-show="users.length">
+  <h1>Here are all of your users:</h1>
+  <ul class="list-group the-ul">
+    <li class="list-group-item the-li" ng-repeat="item in users">
+      <a ui-sref="users.questions({ userId: item.id })">{{ item.name }}</a>
+    </li>
+  </ul>
 </div>
 
 <div ui-view> </div>
