@@ -37,4 +37,12 @@ questionList.controller('QuestionsCtrl', function QuestionsCtrl($scope, $statePa
     answer.vote--;
   }
 
+  $scope.approveAnswer = function (answer) {
+    answer.approval = true;
+  }
+
+  $scope.disapproveAnswer = function (answer) {
+    answer.approval = false;
+  }
+
 });

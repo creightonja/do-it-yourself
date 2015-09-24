@@ -6,23 +6,23 @@
     <ul class="list-group the-ul">
       <h4 class="h44">Unanswered Questions</h4>
       <li class="list-group-item the-li" ng-repeat="item in user.questions">
-        <div>{{ item.name }}
+        <div ng-show="item.answers.length == 0">{{ item.name }}
           <!-- <a class="clicker" ng-click="editing = true" ng-hide="editing">Add an answer</a> -->
-        </div>
+
         <!-- <span class="form-group" ng-show="editing" ng-submit="editing = false"> -->
           <form class="form-inline" role="form" ng-submit="addAnswer(item, answer)">
             <input type="text" id="answer" class="form-control input-sm" ng-model="answer" placeholder="Answer" required/>
             <button class="btn btn-default btn-sm" type="submit">Save</button>
           </form>
-        <!-- </span> -->
+        </div>
       </li>
     </ul>
   </div>
-  <div "item.answers.length !== 0">
+  <div ng-show="item.answers.length !== 0">
     <ul class="list-group the-ul">
       <h4 class="h44">Answered Questions</h4>
       <li class="list-group-item the-li" ng-repeat="item in user.questions">
-        <div>{{ item.name }}<br>
+        <div ng-show="item.answers.length != 0">{{ item.name }}<br>
           <span>
             {{ item.vote }} <a ng-click="upVote(item)"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>
             <a ng-click="downVote(item)"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>
@@ -34,16 +34,21 @@
               <a ng-click="upVoteAnswer(one_answer)"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>
               <a ng-click="downVoteAnswer(one_answer)"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>
               <span ng-show="one_answer.approval"><span class="glyphicon glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
-                <a ng-click="disapprove(one_answer)">Disapprove</a>
+                <a ng-click="disapproveAnswer(one_answer)">Disapprove</a>
               </span>
               <span ng-show="!item.approval">
-                <a ng-click="approve(one_answer)">Approve</a>
+                <a ng-click="approveAnswer(one_answer)">Approve</a>
               </span>
             </li>
           </ul>
 
+
+          <a ng-click="editing = true" ng-hide="editing">Add another answer</a>
+          <form class="form-inline" role="form" ng-submit="addAnswer(item, answer)" ng-hide="editing = false">
+            <input type="text" id="answer" class="form-control input-sm" ng-model="answer" placeholder="Add another answer" required/>
+            <button class="btn btn-default btn-sm" type="submit">Save</button>
+          </form>
           <a ui-sref="users.questions.comments({ questionId: item.id })">Add Comment</a>
-          <a class="clicker" ng-click="addAnswer(item)" ng-click="editing = true" ng-hide="editing">Add another answer</a>
         </div>
         <span class="form-group" ng-show="editing" ng-submit="editing = false">
           <form class="form-inline" role="form">
