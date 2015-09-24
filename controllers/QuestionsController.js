@@ -26,7 +26,11 @@ questionList.controller('QuestionsCtrl', function QuestionsCtrl($scope, $statePa
 
   $scope.addAnswer = function (question, answer) {
     //question.answer = "Click to answer";
-    question.answers.push(answer);
+    question.answers.push({ theAnswer: answer, vote: 0, approval: null });
+  }
+
+  $scope.upVoteAnswer = function(answer){
+    answer.vote++;
   }
 
 });

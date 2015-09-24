@@ -29,15 +29,19 @@
           </span>
           <ul>
             <li ng-click="editing = true" ng-hide="editing" ng-repeat="one_answer in item.answers">
-              {{ one_answer }}
+              {{ one_answer.theAnswer }}
+              {{ one_answer.vote }}
+              <a ng-click="upVoteAnswer(one_answer.vote)"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>
+              <a ng-click="downVoteAnswer(one_answer.vote)"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>
+              <span ng-show="one_answer.approval"><span class="glyphicon glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+                <a ng-click="disapprove(one_answer)">Disapprove</a>
+              </span>
+              <span ng-show="!item.approval">
+                <a ng-click="approve(one_answer)">Approve</a>
+              </span>
             </li>
           </ul>
-          <span ng-show="item.approval"><span class="glyphicon glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
-            <a ng-click="disapprove(item)">Disapprove</a>
-          </span>
-          <span ng-show="!item.approval">
-            <a ng-click="approve(item)">Approve</a>
-          </span>
+
           <a ui-sref="users.questions.comments({ questionId: item.id })">Add Comment</a>
           <a class="clicker" ng-click="addAnswer(item)" ng-click="editing = true" ng-hide="editing">Add another answer</a>
         </div>
