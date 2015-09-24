@@ -33,4 +33,8 @@ questionList.controller('QuestionsCtrl', function QuestionsCtrl($scope, $statePa
     answer.vote++;
   }
 
+  $scope.downVoteAnswer = function(answer){
+    answer.vote--;
+  }
+
 });
