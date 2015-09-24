@@ -1,7 +1,7 @@
 <div ng-show="users.length">
   <h1>Here are all of your users:</h1>
-  <ul>
-    <li ng-repeat="item in users">
+  <ul class="list-group the-ul">
+    <li class="list-group-item the-li" ng-repeat="item in users">
       <a ui-sref="users.questions({ userId: item.id })">{{ item.name }} {{ item.id }}</a>
     </li>
   </ul>

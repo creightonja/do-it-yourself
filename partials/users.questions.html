@@ -2,11 +2,11 @@
 
 
   <h2>Question List for {{ user.name }}</h2>
-  <ul class="list-group">
-    <li class="list-group-item" ng-repeat="item in user.questions">
-      <h4 ng-show="item.answer == null">Unanswered Questions</h4>
+  <ul class="list-group the-ul">
+    <h4 class="h44" ng-show="item.answer == null">Unanswered Questions</h4>
+    <li class="list-group-item the-li" ng-repeat="item in user.questions">
       <div ng-show="item.answer == null">{{ item.name }}
-        <span ng-click="editing = true" ng-hide="editing">Add an answer</span>
+        <a class="clicker" ng-click="editing = true" ng-hide="editing">Add an answer</a>
       </div>
       <span class="form-group" ng-show="editing" ng-submit="editing = false">
         <form class="form-inline" role="form">
@@ -16,12 +16,21 @@
       </span>
     </li>
   </ul>
-  <ul class="list-group">
-    <li class="list-group-item" ng-repeat="item in user.questions">
-      <h4 ng-show="item.answer != null">Answered Questions</h4>
-      <div ng-show="item.answer != null">{{ item.name }}
-        <span ng-click="editing = true" ng-hide="editing">{{ item.answer }}</span>
-        <span>{{ item.vote }} <a ng-click="upVote(item)">Vote Up</a> <a ng-click="downVote(item)">Vote Down</a></span>
+  <ul class="list-group the-ul">
+    <h4 class="h44" ng-show="item.answer != null">Answered Questions</h4>
+    <li class="list-group-item the-li" ng-repeat="item in user.questions">
+      <div ng-show="item.answer != null">{{ item.name }}<br>
+        <span>
+          {{ item.vote }} <a ng-click="upVote(item)"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>
+          <a ng-click="downVote(item)"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>
+        </span>
+        <span ng-click="editing = true" ng-hide="editing">{{ item.answer }}</span><br>
+        <span ng-show="item.approval">Approved
+          <a ng-click="disapprove(item)">disapprove</a>
+        </span>
+        <span ng-show="!item.approval">
+          <a ng-click="approve(item)">Approve Answer</a>
+        </span>
       </div>
       <span class="form-group" ng-show="editing" ng-submit="editing = false">
         <form class="form-inline" role="form">
